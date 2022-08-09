@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+// All attributes must be present, when creating or reading club members
+message MClubMember {
+    string id = 1;
+    string first = 2;
+    string last = 3;
+    string email = 4;
+    string password = 5;
+    string cell = 6;
+    int32 rating = 7;
+    bool status = 8;
+}
+
+//  The id is required, and all other attributes are optional, when updating a club member
+message MClubMemberUpdate {
+    string id = 1;
+    optional string first = 2;
+    optional string last = 3;
+    optional string email = 4;
+    optional string password = 5;
+    optional string cell = 6;
+    optional int32 rating = 7;
+    optional bool status = 8;
+}
+
+message MClubMemberId {
+    string id = 1;
+}
+message MClubMemberEmpty {}
+
+message MClubMembers {
+    repeated MClubMember data = 1;
+}
+
+message string {
+    string id = 1;
+}
+
+// The greeting service definition
+service SClubMember {
+    // creates a club member
+    rpc CreateClubMember (MClubMember) returns (MClubMember);
+    // reads a club member
+    rpc ReadClubMember (MClubMemberId) returns (MClubMember);
+    // reads all club members
+    rpc ReadClubMembers (MClubMemberEmpty) returns (stream MClubMember);
+    // Update all club member
+    rpc UpdateClubMember (MClubMemberUpdate) returns (MClubMember);
+    // Delete s club member
+    rpc DeleteClubMember (MClubMemberId) returns (MClubMember);
+}
