@@ -7,8 +7,28 @@ PB_OSX = ${PB_PREFIX}-${PB_VER}-${PB_FN}
 PB_DIR = ./pb
 export PATH := ./pb/bin:$(PATH)
 
-protoc:
-	rm -f ${PB_OSX}
-	rm -rf ${PB_DIR}
-	curl -LO ${PB_URL}/${PB_OSX}
-	unzip ${PB_OSX} -d ${PB_DIR}
+PROTODIR = ./grpc/proto
+
+#protoc:
+#	rm -f ${PB_OSX}
+#	rm -rf ${PB_DIR}
+#	curl -LO ${PB_URL}/${PB_OSX}
+#	unzip ${PB_OSX} -d ${PB_DIR}
+#
+#protobuf:
+#	go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+#
+#protobf:
+#	protoc  --go_out=./ --go_opt=paths=source_relative ./grpc/proto/club-member.proto
+
+#$(PROTODIR)/%.go.$(PROTODIR)/%.proto:
+#	protoc  --go_out=./ --go_opt=paths=source_relative  $(PROTODIR)$<
+
+#./grpc/proto/club-member.pb.go: ./grpc/proto/club-member.proto
+#	protoc  --go_out=./ --go_opt=paths=source_relative ./grpc/proto/club-member.proto
+#
+$(PROTODIR)/club-member.pb.go: $(PROTODIR)/club-member.proto
+	protoc  --go_out=./ --go_opt=paths=source_relative $(PROTODIR)/club-member.proto
+
+#$(PROTODIR)/%.go: $(PROTODIR)/%.proto
+#	protoc  --go_out=./ --go_opt=paths=source_relative $(PROTODIR)/$<
