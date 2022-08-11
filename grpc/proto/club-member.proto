@@ -1,4 +1,6 @@
 syntax = "proto3";
+package proto;
+option go_package = "go-swiss-pairing/grpc/proto";
 
 // All attributes must be present, when creating or reading club members
 message MClubMember {
@@ -42,11 +44,11 @@ service SClubMember {
     // creates a club member
     rpc CreateClubMember (MClubMember) returns (MClubMember);
     // reads a club member
-    rpc ReadClubMember (MClubMemberId) returns (MClubMember);
-    // reads all club members
-    rpc ReadClubMembers (MClubMemberEmpty) returns (stream MClubMember);
-    // Update all club member
-    rpc UpdateClubMember (MClubMemberUpdate) returns (MClubMember);
-    // Delete s club member
-    rpc DeleteClubMember (MClubMemberId) returns (MClubMember);
+//    rpc ReadClubMember (MClubMemberId) returns (MClubMember);
+//    // reads all club members
+//    rpc ReadClubMembers (MClubMemberEmpty) returns (stream MClubMember);
+//    // Update all club member
+//    rpc UpdateClubMember (MClubMemberUpdate) returns (MClubMember);
+//    // Delete s club member
+//    rpc DeleteClubMember (MClubMemberId) returns (MClubMember);
 }
